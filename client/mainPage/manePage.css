@@ -1,0 +1,16 @@
+.imgGroups {
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+.fa-group-remove{
+    margin-top: 13px;
+}
+.fa-group-remove:hover{
+    color: #C04646;
+}
+
+
+

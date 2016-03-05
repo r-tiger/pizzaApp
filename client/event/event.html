@@ -1,0 +1,117 @@
+<template name="event">
+    <div class="container">
+        {{#if isTakePart}}
+            {{#if isTakePart.isTake}}
+                {{>userOrder}}
+            {{else}}
+                You refused to take part in this event.
+            {{/if}}
+        {{else}}
+            <h3>Will you take part in this event?</h3>
+            <button type="button" class="btn btn-primary" id="buttonYes">Yes</button>
+            <button type="button" class="btn btn-danger" id="buttonNo">No</button>
+        {{/if}}
+    </div>
+</template>
+
+<template name="userOrder">
+    {{#if isUserOrdered}}
+        {{#if isAllOrdered}}
+            <h2>You need to pay:</h2>
+            <ul class="list-group">
+                {{#each orderResult.items}}
+                    <li class="list-group-item">
+                        <div><strong>Name:</strong>{{name}}</div>
+                        <div><strong>Quantity: </strong>{{qty}}</div>
+                        <div><strong>Price: </strong>{{price}} $</div>
+                    </li>
+                {{/each}}
+            </ul>
+            <div><strong>Total: </strong>{{orderResult.total}} $</div>
+            {{#if isOwner}}
+                <h2>Order result:</h2>
+                <ul class="list-group">
+                    {{#each eventResult.order}}
+                        <li class="list-group-item">
+                            <div><strong>Name:</strong>{{name}}</div>
+                            <div><strong>Price: </strong>{{total}} $</div>
+                        </li>
+                    {{/each}}
+                </ul>
+                <div><strong>Total: </strong>{{eventResult.total}} $</div>
+                <div><strong>Status: </strong>{{eventResult.status}}</div>
+                <hr>
+                <div class="form-inline">
+                    <label class="control-label col-md-2" for="item">Status:</label>
+                    <div class="col-md-6 selectContainer">
+                        <select name="statusOrder" class="form-control btn-info" id="statusOrder">
+                            <option style="display: none" selected value="">Please select Status ...</option>
+                            {{#each status}}
+                                <option value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <button class="btn btn-success changeStatus">Save</button>
+                </div>
+                <hr>
+            {{/if}}
+        {{else}}
+            You are ordered
+        {{/if}}
+    {{else}}
+        <button class="btn btn-primary icon-plus" id="addItem">Add new</button>
+        {{> reactiveTable collection=items settings=itemsSettings id='purchasingList' class="table table-bordered table-hover"}}
+        <div class="form-inline pull-right">
+            {{#if isOwner}}
+                <button class="btn btn-info addCoupon">Add coupon</button>
+            {{/if}}
+            <button class="btn btn-success purchaseOrder">Place order</button>
+        </div>
+        <div class="form-group" style="margin-top: 70px">
+            {{#each discount}}
+                <div class="alert alert-info">
+                    {{#if isOwner}}
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close"
+                           id="removeDiscount">&times;</a>
+                    {{/if}}
+                    <strong>{{name}} - </strong> discount:{{percent}}%
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</template>
+
+
+<template name="addNewItem">
+    <form>
+        <div class="form-group">
+            <label for="inputNameItem">Name of Item</label>
+            <input type="text" class="form-control" id="inputNameItem" placeholder="Name" value="">
+        </div>
+        <div class="form-group">
+            <label for="inputPriceItem">Price of Item</label>
+            <input type="number" class="form-control" id="inputPriceItem" placeholder="Price" value="">
+        </div>
+    </form>
+</template>
+
+<template name="addCoupon">
+    <form>
+        <div class="row">
+            <label class="control-label col-md-2" for="item">Items:</label>
+            <div class="col-md-6 selectContainer">
+                <select name="item" class="form-control btn-info" id="item">
+                    <option style="display: none" selected value="">Please select Item ...</option>
+                    {{#each items}}
+                        <option id="{{_id}}" value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDiscount">Discount of Coupon</label>
+            <input type="number" class="form-control" id="inputDiscount" placeholder="Discount" min="0" max="100"
+                   value="">
+        </div>
+    </form>
+</template>

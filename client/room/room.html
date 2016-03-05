@@ -1,0 +1,98 @@
+<template name="room">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a>
+                    My group
+                </a>
+                {{#if isOwner}}
+                    <li class="list-group-image">
+                        <a href="#" id="addUserMenu"> Add/Remove Users</a>
+                    </li>
+                    <li class="list-group-image">
+                        <a href="#" id="addEventMenu"> Add Event</a>
+                    </li>
+                {{/if}}
+                <hr>
+            <li>
+                <a>
+                    Events:
+                </a>
+                {{#each eventsGroup}}
+                    <li>
+                        <a href="#" class="eventMenu" id={{_id}}> {{name}}</a>
+                    </li>
+                {{/each}}
+                </li>
+                </li>
+            </ul>
+
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        {{> mainRoom}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+</template>
+
+
+<template name="mainRoom">
+    <h2>List of Events</h2>
+    <ul class="list-group">
+        {{#each eventsGroup}}
+        <li class="list-group-item"><a href="#">{{name}}
+            <div><strong>Date:</strong>{{createdAt}}</div></a>
+            <div><strong>Status: </strong>{{status}}</div>
+        </li>
+        {{/each}}
+    </ul>
+
+</template>
+
+<template name="addUsers">
+    <form>
+        <div class="row">
+            <label class="control-label col-md-2" for="sel1">Users:</label>
+            <div class="col-md-6 selectContainer">
+                <select name="users" class="form-control btn-info" id="users">
+                    <option style="display: none" selected value="">Please select User ...</option>
+                    {{#each users}}
+                        <option id="{{_id}}" value="{{_id}}">{{username}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            {{#each usersInGroup}}
+                <div class="alert alert-info alert-users">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" id="removeUser">&times;</a>
+                    <strong>{{username}}</strong>
+                </div>
+            {{/each}}
+        </div>
+    </form>
+</template>
+
+
+<template name="addEvent">
+    <form>
+        <div class="form-group">
+            <label for="inputNameEvent">Name of Event</label>
+            <input type="text" class="form-control" id="inputNameEvent" placeholder="Name" value="">
+        </div>
+    </form>
+</template>

@@ -1,0 +1,15 @@
+<template name="index">
+
+    {{#if currentUser}}
+        {{>mainPage}}
+    {{else}}
+        <div class="container">
+        <div class="alert alert-success">
+            <strong>LOGIN OR REGISTER!</strong>
+        </div>
+        </div>
+    {{/if}}
+</template>
+
+
+

@@ -1,0 +1,50 @@
+<template name="mainPage">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        My groups
+                    </a>
+                </li>
+                {{#each groups}}
+                    <li class="list-group-image">
+                        <a href="#"><img class="img-responsive imgGroups" src={{getImageUrl logo}}>  {{name}}
+                            {{#if isOwner this.owner}}
+                                <span class="fa fa-lg fa-trash-o fa-group-remove" data-toggle="tooltip"
+                                      title="Remove"></span>
+                            {{/if}}
+
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Select Group in side menu</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+</template>
+
+
+<template name="delGroup">
+    <form>
+        <div class="form-group">
+            <label for="inputName">Are you sure want to delete? </label>
+        </div>
+    </form>
+</template>

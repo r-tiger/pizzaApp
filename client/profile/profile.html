@@ -1,0 +1,15 @@
+<template name="profile">
+    <div class="container">
+        <form role="form" class="form-profile">
+            <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="input" class="form-control" id="userName" value={{currentUser.username}}>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email" value={{currentUser.emails.[0].address}}>
+            </div>
+        </form>
+        <button class="btn btn-default" id="save">Save</button>
+    </div>
+</template>

@@ -1,0 +1,18 @@
+<head>
+    <title>Posts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body >
+</body>
+
+<template name="layout">
+    {{>navbar}}
+    <div class="clearfix"> </div>
+    <div class="page-container">
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                {{> yield}}
+            </div>
+        </div>
+    </div>
+</template>

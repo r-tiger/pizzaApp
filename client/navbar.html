@@ -1,0 +1,81 @@
+<template name="navbar">
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            {{#if currentUser}}
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                </a>
+            {{/if}}
+            <a class="navbar-brand" href="/">Pizza App</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {{#if currentUser}}
+                    <li><a href="/profile" id="Settings">Profile</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Groups
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="#" id="createGroup">Create Group</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="">Other</a></li>
+                        </ul>
+                    </li>
+                {{/if}}
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {{>notifications}}
+                {{>loginButtons class="btn btn-default" align="right"}}
+            </ul>
+        </div>
+    </nav>
+</template>
+
+<template name="notifications">
+    <div class="dropdown dropdown-bell">
+        <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+            <i class="glyphicon glyphicon-bell"></i>
+            <span class="badge badge-default badge-bell">
+                       {{notifications.count}}
+					</span>
+        </a>
+
+        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+            <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+            </div>
+            <li class="divider"></li>
+            <div class="notifications-wrapper">
+                {{#each notifications}}
+                <a class="content" href="#">
+                    <div class="notification-item">
+                        <button type="button" class="close remove-notification" data-dismiss="modal">&times;</button>
+                        <h4 class="item-title">{{text}}</h4>
+                       <!-- <p class="item-info"></p>-->
+                    </div>
+                </a>
+                 {{/each}}
+
+            </div>
+            <li class="divider"></li>
+
+        </ul>
+
+    </div>
+</template>
+
+<template name="groupEdit">
+    <form>
+        <div class="form-group">
+            <label for="inputName">Name of Group</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Name" value="">
+        </div>
+        <div class="form-group">
+            Select a Group Img: <input type="file" class="FileInput">
+        </div>
+    </form>
+</template>

@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Pizza Event</title>
+</head>
+
+<body itemtype="http://schema.org/EmailMessage">
+<h2>You need to pay:</h2>
+<ul class="list-group">
+    {{#each orderResult.items}}
+        <li class="list-group-item">
+            <div><strong>Name:</strong>{{name}}</div>
+            <div><strong>Quantity: </strong>{{qty}}</div>
+            <div><strong>Price: </strong>{{price}} $</div>
+        </li>
+    {{/each}}
+</ul>
+<div><strong>Total: </strong>{{orderResult.total}} $</div>
+{{#if isOwner}}
+    <h2>Order result:</h2>
+    <ul class="list-group">
+        {{#each eventResult.order}}
+            <li class="list-group-item">
+                <div><strong>Name:</strong>{{name}}</div>
+                <div><strong>Price: </strong>{{total}} $</div>
+            </li>
+        {{/each}}
+    </ul>
+    <div><strong>Total: </strong>{{eventResult.total}} $</div>
+    <div><strong>Status: </strong>{{eventResult.status}}</div>
+    <hr>
+{{/if}}
+</body>
+</html>
