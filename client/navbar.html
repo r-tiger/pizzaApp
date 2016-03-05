@@ -28,7 +28,9 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                {{>notifications}}
+                {{#if currentUser}}
+                    {{>notifications}}
+                {{/if}}
                 {{>loginButtons class="btn btn-default" align="right"}}
             </ul>
         </div>
@@ -40,25 +42,27 @@
         <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
             <i class="glyphicon glyphicon-bell"></i>
             <span class="badge badge-default badge-bell">
-                       {{notifications.count}}
-					</span>
+                {{notifications.count}}
+            </span>
         </a>
 
         <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
 
-            <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+            <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4
+                    class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
             </div>
             <li class="divider"></li>
             <div class="notifications-wrapper">
                 {{#each notifications}}
-                <a class="content" href="#">
-                    <div class="notification-item">
-                        <button type="button" class="close remove-notification" data-dismiss="modal">&times;</button>
-                        <h4 class="item-title">{{text}}</h4>
-                       <!-- <p class="item-info"></p>-->
-                    </div>
-                </a>
-                 {{/each}}
+                    <a class="content" href="#">
+                        <div class="notification-item">
+                            <button type="button" class="close remove-notification"
+                                    data-dismiss="modal">&times;</button>
+                            <h4 class="item-title">{{text}}</h4>
+                            <!-- <p class="item-info"></p>-->
+                        </div>
+                    </a>
+                {{/each}}
 
             </div>
             <li class="divider"></li>

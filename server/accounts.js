@@ -4,7 +4,8 @@ Accounts.onCreateUser(function (options, user) {
             user.profile = options.profile
         }
         if (user.services.google){
-            user.emails = [{address: user.services.google.email, verified: true}]
+            user.emails = [{address: user.services.google.email, verified: true}];
+            user.username = user.services.google.name;
         }
 
         var service = _.keys(user.services)[0];
