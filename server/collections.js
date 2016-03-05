@@ -3,7 +3,7 @@ Events.after.update(function (userId, doc) {
         var order = doc.order;
         var isOrdered = true;
         order.forEach(function (user) {
-            if (!user.items && user.isTake === undefined ) isOrdered = false;
+            if (!user.items && user.isTake === undefined | user.isTake === true) isOrdered = false;
         });
         if (isOrdered) {
             var discount = doc.discount;
